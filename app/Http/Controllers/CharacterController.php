@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Http;
 use App\Models\Character;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Throwable;
 class CharacterController extends Controller
 {
 public function index()
-{
+{  try {
     if (Character::count() == 0) {
         $characters = [];
 
@@ -29,6 +31,16 @@ public function index()
         $characters = Character::all();
         return view('characters.saved', compact('characters'));
     }
+      } catch (Throwable $th) {
+            DB::rollBack();
+
+            return response()->json([
+                'code' => 500,
+                'message' => 'Algo Ocurrio, Comunicate Con Desarrollo',
+                'error' => $th->getMessage(),
+                'line' => $th->getLine(),
+            ], 500);
+        }
 }
 
 public function store(Request $request)
