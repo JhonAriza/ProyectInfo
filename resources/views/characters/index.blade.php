@@ -28,14 +28,14 @@
             </thead>
             <tbody>
                 @foreach ($characters as $char)
-                    <tr class="{{ $char['status'] === 'Alive' ? 'table-success' : ($char['status'] === 'Dead' ? 'table-danger' : 'table-secondary') }}">
-                        <td>{{ $char['id'] }}</td>
-                        <td>{{ $char['name'] }}</td>
-                        <td>{{ $char['status'] }}</td>
-                        <td>{{ $char['species'] }}</td>
-                        <td><img src="{{ $char['image'] }}" width="80" class="rounded shadow-sm"></td>
+                <tr class="{{ $char['status'] === 'Alive' ? 'table-success' : ($char['status'] === 'Dead' ? 'table-danger' : 'table-secondary') }}">
+                    <td>{{ $char['id'] }}</td>
+                    <td>{{ $char['name'] }}</td>
+                    <td>{{ $char['status'] }}</td>
+                    <td>{{ $char['species'] }}</td>
+                    <td><img src="{{ $char['image'] }}" width="80" class="rounded shadow-sm"></td>
 
-                    </tr>
+                </tr>
                 @endforeach
             </tbody>
         </table>
@@ -43,3 +43,4 @@
 </div>
 
 @endsection
+
